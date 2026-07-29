@@ -16,7 +16,11 @@ const app = express();
 connectDB();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin:"*",
+  credentials:true,
+  methods:["POST","GET","PUT","PATCH","UPDATE","QUERY","DELETE"]
+}));
 app.use(express.json());
 
 // Static Upload Folder
