@@ -19,7 +19,8 @@ connectDB();
 app.use(cors({
   origin:"*",
   credentials:true,
-  methods:["POST","GET","PUT","PATCH","UPDATE","QUERY","DELETE"]
+  methods:["POST","GET","PUT","PATCH","UPDATE","QUERY","DELETE"],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
