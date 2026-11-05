@@ -13,7 +13,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const app = express();
 
 // Database Connection
-connectDB();
+// connectDB();
 
 // Middlewares
 app.use(cors());
@@ -31,6 +31,8 @@ app.use("/api/admin", adminRoutes);
 app.get("/", (req, res) => {
   res.send("Service Provider Portal API Running...");
 });
+
+
 
 // 404 Route
 app.use((req, res) => {
@@ -51,6 +53,17 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
+
+startServer();
